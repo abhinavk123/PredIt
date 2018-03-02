@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'ui_predit.ui'
+#
+# Created by: PyQt5 UI code generator 5.6
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_PredIt(object):
+    def setupUi(self, PredIt):
+        PredIt.setObjectName("PredIt")
+        PredIt.resize(428, 248)
+        PredIt.setMinimumSize(QtCore.QSize(428, 248))
+        PredIt.setMaximumSize(QtCore.QSize(428, 248))
+        self.gridLayout_5 = QtWidgets.QGridLayout(PredIt)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_5.addItem(spacerItem, 1, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_5.addItem(spacerItem1, 3, 0, 1, 1)
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(PredIt)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.algo_type = QtWidgets.QComboBox(PredIt)
+        self.algo_type.setObjectName("algo_type")
+        self.gridLayout.addWidget(self.algo_type, 0, 1, 1, 1)
+        self.gridLayout_5.addLayout(self.gridLayout, 0, 0, 1, 1)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_2 = QtWidgets.QLabel(PredIt)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.label_2, 0, 0, 1, 1)
+        self.algo = QtWidgets.QComboBox(PredIt)
+        self.algo.setObjectName("algo")
+        self.gridLayout_2.addWidget(self.algo, 0, 1, 1, 1)
+        self.gridLayout_5.addLayout(self.gridLayout_2, 2, 0, 1, 1)
+        self.gridLayout_3 = QtWidgets.QGridLayout()
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.label_3 = QtWidgets.QLabel(PredIt)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
+        self.openpushButton = QtWidgets.QPushButton(PredIt)
+        self.openpushButton.setObjectName("openpushButton")
+        self.gridLayout_3.addWidget(self.openpushButton, 0, 1, 1, 1)
+        self.gridLayout_5.addLayout(self.gridLayout_3, 4, 0, 1, 1)
+        self.gridLayout_4 = QtWidgets.QGridLayout()
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.label_4 = QtWidgets.QLabel(PredIt)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_4.addWidget(self.label_4, 0, 0, 1, 1)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.trainspinBox = QtWidgets.QSpinBox(PredIt)
+        self.trainspinBox.setObjectName("trainspinBox")
+        self.horizontalLayout.addWidget(self.trainspinBox)
+        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 1, 1, 1)
+        self.label_5 = QtWidgets.QLabel(PredIt)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_4.addWidget(self.label_5, 0, 2, 1, 1)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.spinBox_2 = QtWidgets.QSpinBox(PredIt)
+        self.spinBox_2.setEnabled(True)
+        self.spinBox_2.setReadOnly(True)
+        self.spinBox_2.setObjectName("spinBox_2")
+        self.horizontalLayout_2.addWidget(self.spinBox_2)
+        self.gridLayout_4.addLayout(self.horizontalLayout_2, 0, 3, 1, 1)
+        self.gridLayout_5.addLayout(self.gridLayout_4, 6, 0, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_5.addItem(spacerItem2, 5, 0, 1, 1)
+        self.label.setBuddy(self.algo_type)
+        self.label_2.setBuddy(self.algo)
+        self.label_3.setBuddy(self.openpushButton)
+
+        self.retranslateUi(PredIt)
+        QtCore.QMetaObject.connectSlotsByName(PredIt)
+
+    def retranslateUi(self, PredIt):
+        _translate = QtCore.QCoreApplication.translate
+        PredIt.setWindowTitle(_translate("PredIt", "PredIt"))
+        self.label.setText(_translate("PredIt", "&Type of Algorithm"))
+        self.label_2.setText(_translate("PredIt", "&Algorithm"))
+        self.label_3.setText(_translate("PredIt", "Import &Dataset"))
+        self.openpushButton.setText(_translate("PredIt", "Open.."))
+        self.label_4.setText(_translate("PredIt", "Training Set Size"))
+        self.trainspinBox.setSuffix(_translate("PredIt", "%"))
+        self.label_5.setText(_translate("PredIt", "Test Set Size"))
+        self.spinBox_2.setSuffix(_translate("PredIt", "%"))
+
