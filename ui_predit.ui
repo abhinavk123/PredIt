@@ -105,6 +105,16 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="viewpushButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>sample</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="6" column="0">
@@ -137,7 +147,7 @@
      <item row="0" column="3">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QSpinBox" name="spinBox_2">
+        <widget class="QSpinBox" name="testSpinBox">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -168,6 +178,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>algo_type</tabstop>
+  <tabstop>algo</tabstop>
+  <tabstop>openpushButton</tabstop>
+  <tabstop>viewpushButton</tabstop>
+  <tabstop>trainspinBox</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
