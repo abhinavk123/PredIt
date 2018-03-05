@@ -9,8 +9,8 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
     def __init__(self):
         super(PredIt, self).__init__(parent=None)
         self.setupUi(self)
-        self.trainsize =0
-        self.testsize = 100
+        self.trainsize =80
+        self.testsize = 20
 
         self.trainspinBox.setValue(self.trainsize)
         self.testSpinBox.setMaximum(100)
@@ -58,6 +58,10 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         wid.setLayout(grid)
         wid.setWindowTitle('Hello')
         wid.exec_()
+
+    @pyqtSlot(int)
+    def on_trainspinBox_valueChanged(self,v):
+        self.testSpinBox.setValue(100-v)
 
 
 
