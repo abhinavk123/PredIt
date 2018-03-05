@@ -32,7 +32,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
 
         self.algo_type.activated.connect(self.setalgotype)
         self.viewpushButton.clicked.connect(self.dispdataset)
-        self.openpushButton.clicked.connect(self.show_result)
+        self.openpushButton.clicked.connect(self.open_file)
 
     def setalgotype(self):
         clicked = self.algo_type.currentIndex()
@@ -65,8 +65,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
     def on_trainspinBox_valueChanged(self,v):
         self.testSpinBox.setValue(100-v)
 
-    def show_result(self):
-        resultbrowser = QTextBrowser()
+    def open_file(self):
         dail = QFileDialog()
         dail.show()
         dail.exec_()
