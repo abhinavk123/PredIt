@@ -30,10 +30,11 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         self.algo_type.addItems(self.listofalgotype)
         self.algo.addItems(self.Reg_list)
 
-        self.algo_type.activated.connect(self.doit)
-        self.viewpushButton.clicked.connect(self.doe)
+        self.algo_type.activated.connect(self.setalgotype)
+        self.viewpushButton.clicked.connect(self.dispdataset)
+        self.openpushButton.clicked.connect(self.show_result)
 
-    def doit(self):
+    def setalgotype(self):
         clicked = self.algo_type.currentIndex()
         self.algo.clear()
         if clicked == 0:
@@ -43,7 +44,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         else:
             self.algo.addItems(self.clust_list)
 
-    def doe(self):
+    def dispdataset(self):
         wid = QDialog()
         table = QTableWidget()
         table.setWindowTitle('hERO')
@@ -57,14 +58,18 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         grid.addWidget(table,0,0)
         wid.setLayout(grid)
         wid.setWindowTitle('Hello')
+        wid.setMinimumSize(table.horizontalHeader().length(),table.verticalHeader().length())
         wid.exec_()
 
     @pyqtSlot(int)
     def on_trainspinBox_valueChanged(self,v):
         self.testSpinBox.setValue(100-v)
 
-
-
+    def show_result(self):
+        resultbrowser = QTextBrowser()
+        dail = QFileDialog()
+        dail.show()
+        dail.exec_()
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     form = PredIt()
