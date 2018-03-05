@@ -1,4 +1,5 @@
 import sys
+import  os
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -11,11 +12,11 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         self.setupUi(self)
         self.trainsize =80
         self.testsize = 20
-
+        self.filename = "resources/Data.csv"
         self.trainspinBox.setValue(self.trainsize)
         self.testSpinBox.setMaximum(100)
         self.testSpinBox.setValue(self.testsize)
-        self.dataset = read_csv("resources/Data.csv",header=None)
+        self.dataset = read_csv(self.filename,header=None)
         self.finaldataset  = self.dataset.iloc[:,:].values
         self.table_row = self.dataset.shape[0]
         self.table_col = self.dataset.shape[1]
@@ -66,9 +67,19 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         self.testSpinBox.setValue(100-v)
 
     def open_file(self):
-        dail = QFileDialog()
-        dail.show()
-        dail.exec_()
+        dir = "."
+        formats = ["*.csv"]
+        fname = QFileDialog.getOpenFileName(self, "PredIt - Choose Dataset", dir,
+                                            "CSV File (%s)" % " ".join(formats))
+        if len(fname[0]):
+            self.filename = fname
+            self.viewpushButton.setText(os.path.basename(self.filename[0]))
+            self.dataset = read_csv(self.filename[0], header=None)
+            self.finaldataset = self.dataset.iloc[:, :].values
+            self.table_row = self.dataset.shape[0]
+            self.table_col = self.dataset.shape[1]
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     form = PredIt()
