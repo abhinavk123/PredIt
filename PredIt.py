@@ -107,7 +107,17 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
                 self.display_result(malgos.linearreg(self.dataset))
             if alg == 1:
                 self.display_result(malgos.multiplereg(self.dataset))
-
+        if type == 1:
+            if alg == 0:
+                self.display_result(malgos.logs_reg(self.dataset))
+            if alg == 1:
+                self.display_result(malgos.knn(self.dataset))
+            if alg == 2:
+                self.display_result(malgos.svm(self.dataset))
+            if alg == 3:
+                self.display_result(malgos.kernelsvm(self.dataset))
+            if alg == 4:
+                self.display_result(malgos.kernelsvm(self.dataset))
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     form = PredIt()
