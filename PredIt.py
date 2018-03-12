@@ -117,7 +117,8 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
             if alg == 3:
                 self.display_result(malgos.kernelsvm(self.dataset))
             if alg == 4:
-                self.display_result(malgos.kernelsvm(self.dataset))
+                self.display_result(malgos.naivebayse(self.dataset))
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     form = PredIt()
