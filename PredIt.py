@@ -1,7 +1,6 @@
 import sys
 import  os
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import  malgos
 from pandas import read_csv
@@ -24,7 +23,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         self.listofalgotype=['Regression','Classification','Clustering']
         self.Reg_list = ['Simple Linear','Multiple Linear','Polynomial']
         self.Class_list = ['Logistic Regression','K-Nearest Neighbours','SVM'
-                           ,'Kernel SVM','Naive Bayes','Decision Tree'
+                           ,'Kernel SVM','Naive Bayes','Decision Tree',
                            'Random Forest']
         self.clust_list = ['K-Means','Hierarchical']
 
@@ -118,6 +117,8 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
                 self.display_result(malgos.kernelsvm(self.dataset))
             if alg == 4:
                 self.display_result(malgos.naivebayse(self.dataset))
+            if alg == 5:
+                self.display_result(malgos.decision_tree(self.dataset))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
