@@ -39,6 +39,7 @@ def multiplereg(dataset):
         msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
 
     return msg
+
 def polyreg(dataset):
     X = dataset.iloc[:, 1:2].values
     y = dataset.iloc[:, 2].values
@@ -160,5 +161,55 @@ def decision_tree(dataset):
     msg = ""
     for i in range(len(y_pred)):
         msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+
+    return msg
+
+def rand_forest(dataset):
+    X = dataset.iloc[:, [2, 3]].values
+    y = dataset.iloc[:, 4].values
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+    sc = StandardScaler()
+    X_train = sc.fit_transform(X_train)
+    X_test = sc.transform(X_test)
+    from sklearn.ensemble import RandomForestClassifier
+    classifier = RandomForestClassifier(n_estimators=10, criterion='entropy', random_state=0)
+    classifier.fit(X_train, y_train)
+    y_pred = classifier.predict(X_test)
+    cm = confusion_matrix(y_test, y_pred)
+
+    msg = ""
+    for i in range(len(y_pred)):
+        msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+
+    return msg
+
+def kmeans(dataset):
+    X = dataset.iloc[:, [3, 4]].values
+    y = dataset.iloc[:, 3].values
+    from sklearn.cluster import KMeans
+    wcss = []
+    for i in range(1, 11):
+        kmeans = KMeans(n_clusters=i, init='k-means++', random_state=42)
+        kmeans.fit(X)
+        wcss.append(kmeans.inertia_)
+    kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42)
+    y_kmeans = kmeans.fit_predict(X)
+    msg = ""
+    for i in range(len(y_kmeans)):
+        msg += "Cluster No :" + str(y_kmeans[i]) + "     Value  :" + str(y[i]) + "\n"
+
+    return msg
+
+def hc(dataset):
+    X = dataset.iloc[:, [3, 4]].values
+    y = dataset.iloc[:, 3].values
+    import scipy.cluster.hierarchy as sch
+    dendrogram = sch.dendrogram(sch.linkage(X, method='ward'))
+    from sklearn.cluster import AgglomerativeClustering
+    hc = AgglomerativeClustering(n_clusters=5, affinity='euclidean', linkage='ward')
+    y_hc = hc.fit_predict(X)
+    msg = ""
+    for i in range(len(y_hc)):
+        msg += "Cluster No :" + str(y_hc[i]) + "     Value  :" + str(y[i]) + "\n"
 
     return msg

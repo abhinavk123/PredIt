@@ -2,13 +2,16 @@ import sys
 import  os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 import  malgos
 from pandas import read_csv
 import ui_predit
+import resources
 class PredIt(QDialog,ui_predit.Ui_PredIt):
     def __init__(self):
         super(PredIt, self).__init__(parent=None)
         self.setupUi(self)
+        self.setWindowIcon(QIcon(":/icon"))
         self.trainsize =80
         self.testsize = 20
         self.filename = "resources/Data.csv"
@@ -119,6 +122,14 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
                 self.display_result(malgos.naivebayse(self.dataset))
             if alg == 5:
                 self.display_result(malgos.decision_tree(self.dataset))
+            if alg == 6:
+                self.display_result(malgos.rand_forest(self.dataset))
+
+        if type == 2:
+            if alg ==0:
+                self.display_result(malgos.kmeans(self.dataset))
+            if alg == 1:
+                self.display_result(malgos.hc(self.dataset))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
