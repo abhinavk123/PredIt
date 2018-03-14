@@ -1,9 +1,9 @@
 import sys
-import  os
+import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import  malgos
+import malgos
 from pandas import read_csv
 import ui_predit
 import resources
@@ -51,7 +51,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
     def dispdataset(self):
         wid = QDialog(self.sender())
         table = QTableWidget()
-        table.setWindowTitle('hERO')
+        table.setWindowTitle('Result')
         table.setRowCount(self.table_row)
         table.setColumnCount(self.table_col)
         for i in range(self.table_row):
