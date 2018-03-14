@@ -51,7 +51,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
     def dispdataset(self):
         wid = QDialog(self.sender())
         table = QTableWidget()
-        table.setWindowTitle('Result')
+        table.setWindowTitle('PredIt - Result')
         table.setRowCount(self.table_row)
         table.setColumnCount(self.table_col)
         for i in range(self.table_row):
