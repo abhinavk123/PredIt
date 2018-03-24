@@ -8,11 +8,11 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
 class LinearReg():
-    def __init__(self,dataset):
+    def __init__(self,dataset,t_size):
         X = dataset.iloc[:, :-1].values
         y = dataset.iloc[:, 1].values
 
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=1 / 3, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=t_size, random_state=0)
 
         self.regressor = LinearRegression()
         self.regressor.fit(self.X_train, self.y_train)

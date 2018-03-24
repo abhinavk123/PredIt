@@ -121,7 +121,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         alg = self.algo.currentIndex()
         if type == 0 :
             if alg == 0:
-                self.temp = LinearReg(self.dataset)
+                self.temp = LinearReg(self.dataset,self.testSpinBox.value()/100)
                 self.display_result(self.temp.disp_result())
             if alg == 1:
                 self.temp = MultipleReg(self.dataset)
