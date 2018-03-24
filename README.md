@@ -1,6 +1,18 @@
 # PredIt
 GUI software for performing predictions on the dataset using various Machine Learning Models.
 
+## Algorithm Included:-
+* Simple Linear Regression
+* Multiple Linear Regression
+* Polynomial Regression
+* Logistic Regression
+* K-Nearest Neighbours
+* SVM
+* Kernel SVM
+* Naive Bayes
+* Decision Tree
+* Random Forest
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine
 
