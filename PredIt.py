@@ -64,7 +64,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         grid = QGridLayout()
         grid.addWidget(table)
         wid.setLayout(grid)
-        wid.setWindowTitle(os.path.basename(self.filename[0]))
+        wid.setWindowTitle("PredIt - %s"%os.path.basename(self.filename[0]))
         wid.resize(size)
         wid.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
         wid.exec_()
