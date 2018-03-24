@@ -5,27 +5,42 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
 
 class LinearReg():
     def __init__(self,dataset):
         X = dataset.iloc[:, :-1].values
         y = dataset.iloc[:, 1].values
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1 / 3, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=1 / 3, random_state=0)
 
-        regressor = LinearRegression()
-        regressor.fit(X_train, y_train)
-        y_pred = regressor.predict(X_test)
+        self.regressor = LinearRegression()
+        self.regressor.fit(self.X_train, self.y_train)
+        y_pred = self.regressor.predict(self.X_test)
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" +str(y_test[i]) +"\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" +str(self.y_test[i]) +"\n"
 
         #display_result(msg)
 
     def disp_result(self):
         return self.msg
 
+    def vis_train_set(self):
+        plt.scatter(self.X_train, self.y_train, color='red')
+        plt.plot(self.X_train, self.regressor.predict(self.X_train), color='blue')
+        plt.title('Salary vs Experience (Training set)')
+        plt.xlabel('Years of Experience')
+        plt.ylabel('Salary')
+        plt.show()
 
+    def vis_test_set(self):
+        plt.scatter(self.X_test, self.y_test, color='red')
+        plt.plot(self.X_train, self.regressor.predict(self.X_train), color='blue')
+        plt.title('Salary vs Experience (Test set)')
+        plt.xlabel('Years of Experience')
+        plt.ylabel('Salary')
+        plt.show()
 
 
 class MultipleReg():

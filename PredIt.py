@@ -87,11 +87,21 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
             self.table_col = self.dataset.shape[1]
 
     def display_result(self,result):
-        dail = QDialog(self.sender())
+        dail = QDialog()
         tbrowser = QTextBrowser()
         dail.setWindowTitle('Predit - Result')
+        test_button = QPushButton('Visualise Test Set')
+        train_button = QPushButton('Visualise Train Set')
         layout = QGridLayout()
-        layout.addWidget(tbrowser)
+        vlay = QVBoxLayout()
+        vlay.addWidget(test_button)
+        vlay.addWidget(train_button)
+        space = QSpacerItem(20,70,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        vlay.addItem(space)
+        layout.addWidget(tbrowser,0,0)
+        layout.addLayout(vlay,0,1)
+
+
         dail.setLayout(layout)
         tbrowser.setText(result)
         tbrowser.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -99,6 +109,10 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         size = tbrowser.size()
         dail.resize(size)
         dail.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        test_button.clicked.connect(self.temp.vis_test_set)
+        train_button.clicked.connect(self.temp.vis_train_set)
+        dail.focusNextChild()
         dail.exec_()
 
 
