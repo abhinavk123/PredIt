@@ -3,7 +3,7 @@ import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import malgos
+from malgos import *
 from pandas import read_csv
 import ui_predit
 import resources
@@ -101,35 +101,47 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         dail.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         dail.exec_()
 
+
     def compute_result(self):
         type = self.algo_type.currentIndex()
         alg = self.algo.currentIndex()
         if type == 0 :
             if alg == 0:
-                self.display_result(malgos.linearreg(self.dataset))
+                self.temp = LinearReg(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 1:
-                self.display_result(malgos.multiplereg(self.dataset))
+                self.temp = MultipleReg(self.dataset)
+                self.display_result(self.temp.disp_result())
         if type == 1:
             if alg == 0:
-                self.display_result(malgos.logs_reg(self.dataset))
+                self.temp = Logs_Reg(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 1:
-                self.display_result(malgos.knn(self.dataset))
+                self.temp = Knn(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 2:
-                self.display_result(malgos.svm(self.dataset))
+                self.temp = SVM(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 3:
-                self.display_result(malgos.kernelsvm(self.dataset))
+                self.temp = KernelSvm(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 4:
-                self.display_result(malgos.naivebayse(self.dataset))
+                self.temp = NaiveBayse(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 5:
-                self.display_result(malgos.decision_tree(self.dataset))
+                self.temp = DecisionTree(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 6:
-                self.display_result(malgos.rand_forest(self.dataset))
+                self.temp = RandomForest(self.dataset)
+                self.display_result(self.temp.disp_result())
 
         if type == 2:
             if alg ==0:
-                self.display_result(malgos.kmeans(self.dataset))
+                self.temp = KMeans(self.dataset)
+                self.display_result(self.temp.disp_result())
             if alg == 1:
-                self.display_result(malgos.hc(self.dataset))
+                self.temp = HC(self.dataset)
+                self.display_result(self.temp.disp_result())
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
