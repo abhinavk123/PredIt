@@ -52,17 +52,18 @@ class MultipleReg():
         onehotencoder = OneHotEncoder(categorical_features=[3])
         X = onehotencoder.fit_transform(X).toarray()
         X = X[:, 1:]
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-        regressor = LinearRegression()
-        regressor.fit(X_train, y_train)
-        y_pred = regressor.predict(X_test)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+        self.regressor = LinearRegression()
+        self.regressor.fit(self.X_train, self.y_train)
+        y_pred = self.regressor.predict(self.X_test)
 
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
+
 
 class PolyReg():
     def __init__(self,dataset):
@@ -82,20 +83,20 @@ class Logs_Reg():
 
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
 
         classifier = LogisticRegression(random_state=0)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
 
-        cm = confusion_matrix(y_test, y_pred)
+        cm = confusion_matrix(self.y_test, y_pred)
 
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -104,18 +105,18 @@ class Knn():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.neighbors import KNeighborsClassifier
         classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
-        cm = confusion_matrix(y_test, y_pred)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
+        cm = confusion_matrix(self.y_test, y_pred)
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -124,18 +125,18 @@ class SVM():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.svm import SVC
         classifier = SVC(kernel='linear', random_state=0)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
-        cm = confusion_matrix(y_test, y_pred)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
+        cm = confusion_matrix(self.y_test, y_pred)
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -144,18 +145,18 @@ class KernelSvm():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.svm import SVC
         classifier = SVC(kernel='rbf', random_state=0)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
-        cm = confusion_matrix(y_test, y_pred)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
+        cm = confusion_matrix(self.y_test, y_pred)
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -164,20 +165,20 @@ class NaiveBayse():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.naive_bayes import GaussianNB
         classifier = GaussianNB()
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
 
-        cm = confusion_matrix(y_test, y_pred)
+        cm = confusion_matrix(self.y_test, y_pred)
 
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -186,19 +187,19 @@ class DecisionTree():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.tree import DecisionTreeClassifier
         classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
 
-        cm = confusion_matrix(y_test, y_pred)
+        cm = confusion_matrix(self.y_test, y_pred)
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg
@@ -207,19 +208,19 @@ class RandomForest():
     def __init__(self,dataset):
         X = dataset.iloc[:, [2, 3]].values
         y = dataset.iloc[:, 4].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.25, random_state=0)
         sc = StandardScaler()
-        X_train = sc.fit_transform(X_train)
-        X_test = sc.transform(X_test)
+        self.X_train = sc.fit_transform(self.X_train)
+        self.X_test = sc.transform(self.X_test)
         from sklearn.ensemble import RandomForestClassifier
         classifier = RandomForestClassifier(n_estimators=10, criterion='entropy', random_state=0)
-        classifier.fit(X_train, y_train)
-        y_pred = classifier.predict(X_test)
-        cm = confusion_matrix(y_test, y_pred)
+        classifier.fit(self.X_train, self.y_train)
+        y_pred = classifier.predict(self.X_test)
+        cm = confusion_matrix(self.y_test, y_pred)
 
         self.msg = ""
         for i in range(len(y_pred)):
-            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(y_test[i]) + "\n"
+            self.msg += "Predicated Value :" + str(y_pred[i]) + "     Expected Value  :" + str(self.y_test[i]) + "\n"
 
     def disp_result(self):
         return self.msg

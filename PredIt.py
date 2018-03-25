@@ -7,6 +7,7 @@ from malgos import *
 from pandas import read_csv
 import ui_predit
 import resources
+
 class PredIt(QDialog,ui_predit.Ui_PredIt):
     def __init__(self):
         super(PredIt, self).__init__(parent=None)
@@ -86,7 +87,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
             self.table_row = self.dataset.shape[0]
             self.table_col = self.dataset.shape[1]
 
-    def display_result(self,result):
+    def display_result(self,result,show = False):
         dail = QDialog()
         tbrowser = QTextBrowser()
         dail.setWindowTitle('Predit - Result')
@@ -102,6 +103,7 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         layout.addLayout(vlay,0,1)
 
 
+
         dail.setLayout(layout)
         tbrowser.setText(result)
         tbrowser.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -110,9 +112,14 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
         dail.resize(size)
         dail.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        test_button.clicked.connect(self.temp.vis_test_set)
-        train_button.clicked.connect(self.temp.vis_train_set)
+
         dail.focusNextChild()
+        if show:
+            train_button.setEnabled(False)
+            test_button.setEnabled(False)
+        else:
+            test_button.clicked.connect(self.temp.vis_test_set)
+            train_button.clicked.connect(self.temp.vis_train_set)
         dail.exec_()
 
 
@@ -125,7 +132,8 @@ class PredIt(QDialog,ui_predit.Ui_PredIt):
                 self.display_result(self.temp.disp_result())
             if alg == 1:
                 self.temp = MultipleReg(self.dataset)
-                self.display_result(self.temp.disp_result())
+                self.display_result(self.temp.disp_result(),True)
+
         if type == 1:
             if alg == 0:
                 self.temp = Logs_Reg(self.dataset)
